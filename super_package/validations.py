@@ -46,12 +46,18 @@ def valid_year(year_input):  # check for date-format YYYY
 
 def valid_float(price_input):  # check for max 2 decimals
     try:
-        if Decimal(str(price_input)).as_tuple().exponent >= -2:
+        price_input = float(price_input)
+        correct_decimal = Decimal(str(price_input)).as_tuple().exponent
+
+        if correct_decimal >= -2:
             return price_input
         else:  # 3 or more decimals
-            msg = "Too many decimals, only 2 allowed: \
-                    '{0}'.".format(price_input)
-            raise argparse.ArgumentTypeError(msg)
+            console = Console()
+            console.print("Too many decimals, only 2 allowed: "
+                          + "{0}'.".format(price_input), style='red')
+            exit()
     except ValueError:
-        msg = "Not a valid price: '{0}'.".format(price_input)
-        raise argparse.ArgumentTypeError(msg)
+        console = Console()
+        console.print("Not a valid price: '{0}'.".format(price_input),
+                      style='red')
+        exit()        

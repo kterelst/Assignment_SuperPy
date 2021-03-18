@@ -17,7 +17,7 @@ __human_name__ = 'superpy'
 # Your code below this line.
 def main():
     args = arguments()
-    print(args)
+    # print(args)
     commands(args)
 
 
