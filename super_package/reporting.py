@@ -5,6 +5,7 @@
 
 import csv
 import os
+from pathlib import Path
 from datetime import datetime
 from rich.console import Console
 from rich.table import Table
@@ -12,7 +13,8 @@ from openpyxl import Workbook
 
 
 def print_report(filename, title, args):
-    with open(os.getcwd()+f'\\{filename}', newline='') as csvfile:
+    current_dir = Path(os.getcwd())
+    with open(current_dir / filename, newline='') as csvfile:
 
         console = Console()
         reader = csv.DictReader(csvfile)
@@ -29,17 +31,17 @@ def print_report(filename, title, args):
                 row_list.extend(row.values())
                 ws.append(row_list)
             output_name = title + '_' + output_date + '.xlsx'
-            wb.save(os.getcwd() + '\\' + output_name)
+            wb.save(current_dir / output_name)
             console.print(f'Output to "[green]{output_name}[/green]"')
 
         # export to title_datetime.csv
         if args.csv:
-            with open(os.getcwd() + f'\\{filename}', newline='') as csvfile:
+            with open(current_dir / filename, newline='') as csvfile:
                 console = Console()
                 reader = csv.DictReader(csvfile)
                 headers = reader.fieldnames
                 output_name = title + '_' + output_date + '.csv'
-                with open(os.getcwd() + '\\' + output_name, 'w', newline='')\
+                with open(current_dir / output_name, 'w', newline='')\
                         as csvfile:
                     writer = csv.DictWriter(csvfile, fieldnames=headers)
                     writer.writeheader()

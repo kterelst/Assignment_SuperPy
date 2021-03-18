@@ -3,6 +3,7 @@ SuperPY - ReadMe
 In this user guide you can find the following information:
 - Intended use
 - Technical details
+- Requirements
 - User interface
 - How to use
 - Filesystem
@@ -15,6 +16,11 @@ Technical details:
 This program was tested for use on Windows.
 It will not work on all Operating Systems.
 The use of \ is widely used and i.e. Apple has a different view on that.
+
+
+Requirements:
+-------------
+A requirements.txt is included
 
 
 Intended use:
